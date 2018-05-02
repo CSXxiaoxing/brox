@@ -36,10 +36,10 @@
 
     			<tbody>
                     <tr v-for = 'data in list'>
-    					<td>{{data.zc_name}} <img src="src/srcImg/room002.png" v-if='data.zc_is_boss == 1'></td>
-                        <td :class='data.zn_process >=0 ? "" : "red"' >{{ data.zn_process>=0 ? '+'+ data.zn_process : data.zn_process}}</td> 
-                        <td>{{data.zn_points_give}}</td>
-                        <td>{{data.zn_points_left}}</td>
+    					<td>{{data.nickname}} <img src="../../oxImg/room002.png" v-if='data.is_boss == 1'></td>
+                        <td :class='data.points >=0 ? "" : "red"' >{{ data.points>=0 ? '+'+ data.points : data.points}}</td> 
+                        <td>{{data.give_points}}</td>
+                        <td>{{data.fact_points}}</td>
     				</tr>
                     <!-- <tr>{{list}}</tr> -->
     				<!-- <tr class="total"  v-if="seen && fz">
@@ -88,7 +88,7 @@
     },
     mounted: function(){
         var id = this.$store.state.idRoom.id;
-        this.gameResult(id)
+        // this.gameResult(id)
     },
     methods:{
     	more(){
@@ -96,34 +96,6 @@
     	},
         gameResult (id) { // 先获取一波所有的游戏结果
             var self = this;
-            http.post( '/GameLog/getData', {
-                        roomid: id,
-                    },'',this)
-                .then(res => {
-                    console.log(res.data)
-
-                    if(res.status == 1){
-                        var zWater = 0; // 庄总分
-                        self.waterList = [];
-                        self.$store.state.data.listOver = res.data;
-                        self.$store.state.data.juAll = res.data.length;
-                        res.data.forEach((item,idx)=>{
-
-                            self.waterList.push([])    // 插入
-                            item.DRs.forEach(xitem=>{
-                                self.waterList[idx].push({
-                                    name : xitem.zc_name,   // 名字
-                                    water: xitem.zn_process,  // 分数流水
-                                    wFen : xitem.zn_points_give,  // 抽水分数
-                                    fen : xitem.zn_points_left, // 结余分数
-                                    fraction : xitem.zn_points_total, // 剩余分数
-                                    ForZ : xitem.zc_is_boss,  // 庄时1，普通玩家是2
-                                })
-                            })
-                        })
-                        console.log(self.waterList)
-                    }
-                })
         },
     	
   	}

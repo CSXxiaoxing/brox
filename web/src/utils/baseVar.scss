@@ -1,17 +1,44 @@
+// new game
+$login : url('../../oxImg/login.png'); // 登录页背景
+$home : url('../../oxImg/home.jpg'); // 主页背景
+$wx_login : url('../../oxImg/wx_login.png'); // 微信登录
+$home05 : url('../../oxImg/home05.png'); // 头像背景圈圈
+$gb : url('../../oxImg/gb.png'); // 广播
+$daili : url('../../oxImg/daili.png'); // 绑定代理背景 imsg
+$daili02 : url('../../oxImg/daili02.png'); // 绑定代理确定
+$home06 : url('../../oxImg/home06.png'); // 广播bj
+$off : url('../../oxImg/off.png'); // off
+$chang : url('../../oxImg/chang.png'); // chang
+$idmes : url('../../oxImg/idMessage2.png'); // 头像背景
+// 房间
+$room : url('../../oxImg/room.jpg'); // 广播bj
+$sz : url('../../oxImg/sz.png');    // 申请上庄
+$xz : url('../../oxImg/room004.png');    // 申请上庄
+$cmbj : url('../../oxImg/cmbj.png');    // 筹码背景
+$back : url('../../oxImg/back.png');    // 返回箭头《
+$liBack : url('../../oxImg/liBack.png');    // li背景
+$rule02 : url('../../oxImg/rule02.png');    // 规则框框
+$buyzs : url('../../oxImg/buyzs.png');    // 购买背景
+$zs02 : url('../../oxImg/zs02.png');    // 购买背景li
+$buy : url('../../oxImg/buy.png');    // 购买
+$open : url('../../oxImg/open.png');    // open奖
+
+
+
+
+
+
+
+
 //  Sprites size idmess01 cc00
 $w600: 5.555556rem;
 // 随机庄背景颜色
 $bgColor: #ccc;
 
-// ttf 
-
-// Image================================
 // room url
 $roomAll: url('../../img/room_all.png');
 
-
 // X_login 
-$login001 : url('../../image/login001.png'); // 登录页背景
 $login002 : url('../../image/login002.png'); // logo
 $login003 : url('../../image/login003.png'); // 微信登录
 $login004 : url('../../image/login004.png'); // 手机登录
@@ -48,7 +75,6 @@ $home_KF: url('../../image/KF001.png'); // 客服
 $home_BLB: url('../../image/home002.png'); // 白喇叭
 $home_HLB: url('../../image/home005.png'); // 黄喇叭
 $home_FK: url('../../image/home003.png'); // 房卡
-$buyRoom: url('../../image/buyRoom.png'); // 购买房卡背景
 
 // x_room
 $room001: url('../../image/room001.jpg'); // 主体背景
@@ -80,18 +106,6 @@ $room030: url('../../image/room030.png'); // 我要下庄
 $room031: url('../../image/room031.png'); // 庄背景 68px
 
 
-// X_friend
-$friend001: url('../../image/friend001.png'); // 主体背景
-$friend002: url('../../image/friend002.png'); // 黑色箭头
-$friend003: url('../../image/friend003.png'); // 黑色加号
-$friend004: url('../../image/friend004.png'); // 系统消息
-$friend005: url('../../image/friend005.png'); // 最近联系
-$friend006: url('../../image/friend006.png'); // 好友
-$friend007: url('../../image/friend007.png'); // 铃铛
-$friend008: url('../../image/friend008.png'); // 好友添加
-$friend009: url('../../image/friend009.png'); // 右箭头
-$friend010: url('../../image/friend010.png'); // 弹窗背景
-$friend011: url('../../image/friend011.png'); // 放大镜
 
 
 // x_qun
@@ -102,11 +116,8 @@ $qun005: url('../../image/qun005.png'); // 加减分按钮
 
 // home url careTip01
 $homeAll: url('../../img/home_all.png');
-
 $home02: url('../../img/module_home_buy1.png');
-
 $home08: url('../../img/module_home_no1.png');
-
 
 
 $chart01 : url('../../img/chart_Room6.png');

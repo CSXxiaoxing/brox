@@ -6,24 +6,19 @@
         popup-transition="popup-fade"
         class="openRecords" :class = '$store.state.idRoom.cardFn == 5 ? "five":"seven" '>
             <i @click='onprize = false' class='gxx'></i>
-            <h3 >开奖记录</h3>
+
             <div class='xsllo'>
-            <ul :style='"width:"+1.814815*6+"rem;"'>
-                <!-- <li  v-for='(obj, inx) in ooxData'  v-show='$store.state.data.listOver.length-inx>=1'> -->
+            <ul :style='"width:"+1.8*ooxDataL+"rem;"'>
                 <li  v-for='(obj, inx) in ooxData'>
                     <table  cellspacing="0">
                     <tr>
-                    <th>第 {{obj.num}}局</th>
+                        <th>第 {{obj[1]}}局</th>
                     </tr>
-                    <tr v-for='(data, inx) in obj.result'>
-
-                        <td :style='data=="10" || data=="11" ? "color: red;":""'>
-                            {{oox[data]}}
+                    <tr v-for='(data, ix) in obj[0].niu'>
+                        <td :style='ix==obj[0].banker ? "color: #F6BBBD;":""'>
+                            {{data}}
                         </td>
                     </tr>
-
-                    <tr v-for='dat in 7-obj.result.length'><tb></tb></tr>
-
                     </table>
                 </li>
             </ul>
@@ -35,9 +30,6 @@
 <!-- cellspacing="0"// position: sticky; -->
 <style lang='scss' scoped>
     @import '../../utils/baseVar.scss';
-    td{
-        
-    }
     td.yellow{
         color: #F2D923;
     }
@@ -45,27 +37,21 @@
         height: 0.972222rem;
         width: 0.907407rem;
         position: absolute;
-        right: -0.03rem;
-        top: -0.04rem;
-        background: $login008 no-repeat;
+        right: 0.1rem;
+        top: -0.1rem;
+        background: $off no-repeat;
         background-size: 0.907407rem 0.972222rem;
     }
     .openRecords{
         height: 8.8rem;
         width: 9.555556rem;
-        background: $friend001 no-repeat;
+        background: $open no-repeat;
         background-size: 9.555556rem 8.8rem;
         border-top-right-radius: 0.49rem;
-        h3{
-            height: 0.87037rem;
-            font-size: 0.592593rem;
-            line-height: 0.592593rem;
-            text-align: center;
-            font-weight: 200;
-            padding-top: 0.388889rem;
-        }
+        padding: 95px 50px 56px;
+        box-sizing: border-box;
         .xsllo{
-            width: 970px;
+            width: 100%;
             position: relative;
             left: 50%;
             transform: translate(-50%,0);
@@ -81,7 +67,7 @@
             height: 100%;
             display: flex;
             li{
-                width: 1.805556rem;
+                width: 2rem;
                 height: 100%;
                 border-right: 1px solid #B4B6B1;
             }
@@ -91,23 +77,28 @@
 
                 tr{
                     height: 12.5%;
-                    background: #fff;
-                    border: 1px solid #A8B0A5;
+                    background: #2B1E56;
+                    border: 1px solid #fff;
+                }
+                tr:nth-of-type(1){
+                    background: rgba(0,0,0,0);
+                    color: #fff;
+                    height: .533333rem;
+                    // font-size
                 }
                 th{
-                    font-size: 0.425926rem;
+                    font-size: 0.4rem;
                     border: 1px solid #A8B0A5;
-                    color: #2A8F99;
-                    background: #D1E8B2;
+                    background: rgba(0,0,0,0);
                 }
                 td{
-                    border: 1px solid #A8B0A5;
+                    border: 1px solid #fff;
                     font-size: 0.314815rem;
-                    color: #537F10;
+                    color: #FFFDC2;
                     font-weight: 600;
                 }
-                tr:nth-of-type(2n-1){
-                    background: #EFF6E4;
+                tr:nth-of-type(2n){
+                    background: #1F1345;
                 }
             }
         }
@@ -131,6 +122,7 @@ Vue.component('loading', loading)
             // unshift
             index : [],
             ooxData: [],
+            ooxDataL: 0,
             oox: ['没牛','牛一', '牛二', '牛三', '牛四', '牛五', '牛六', '牛七', '牛八', '牛九', '牛牛', '五花牛'],
           }
         },

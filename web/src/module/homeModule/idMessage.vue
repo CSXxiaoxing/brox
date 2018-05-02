@@ -8,13 +8,13 @@
       <dt>
         <img :src='$store.state.user.userImg' alt="">
       </dt>
-      <dd @click='changeTX'><span>更 换 头 像</span></dd>
+      <!-- <dd @click='changeTX'><span>更 换 头 像</span></dd> -->
     </dl>
     
     <ul>
       <li :class='ZD ? "":"baiBJ"'>
         <input type="text" v-model='name' :readonly='ZD'/>
-        <img src="src/srcImg/idMessage3.png" @click='ZD=!ZD' v-if='ZD'/>
+        <img src="../../oxImg/hb.png" @click='ZD=!ZD' v-if='ZD'/>
         <b class='queren' v-if='!ZD' @click='changeName'></b>
       </li>
       <li>ID:{{id}}</li>
@@ -45,13 +45,16 @@
 
 <style lang='scss' scoped>
     @import '../../utils/baseVar.scss';
-        
+        // #mes_swi .mint-switch-input:checked + .mint-switch-core
 
   .mess{
     width:7.546296rem;
     height:4.87963rem;
-    background: $idmess01 no-repeat;
+    padding-left: 0.24rem;
+    background: $daili no-repeat;
     background-size:7.546296rem 4.87963rem;
+    color: white;
+    box-sizing: border-box;
         dl{
             float: left;
             width:2.514815rem;
@@ -63,7 +66,7 @@
                 top:0.52963rem;
                 width:2.333333rem;
                 height: 2.37037rem;
-                background: $idmess02 no-repeat;
+                background: $idmes no-repeat;
                 background-size:2.333333rem 2.37037rem;
                 overflow: hidden;
                 img{
@@ -88,9 +91,9 @@
             }
         }
         ul{
-            width:3.0rem;
-            padding:0.509259rem 0.557407rem; 
-            position:relative;
+            width: 3.0rem;
+            padding: 0.509259rem 0.59rem; 
+            position: relative;
             font-size: 0.352963rem;
             float: left;
             text-align: left;
@@ -103,11 +106,12 @@
                 }
             }
             li:nth-of-type(1){
+                
                 // width:2.27037rem;
                 line-height: 0.494444rem;
-                background-color: #DFC7A5;
+                background-color: #595391;
                 padding-left: 0.192593rem;
-                border-radius: 0.925926rem;
+                border-radius: 0.14rem;
                 position: relative;
                 height: 0.514rem;
                 input{
@@ -117,11 +121,12 @@
                     line-height: 0.490741rem;
                     height: 0.490741rem;
                     width: 100%;
+                    color: #fff;
                 }
                 img{
                     position: absolute;
-                    width: 0.157407rem;
-                    height: 0.148148rem;
+                    width: 0.26rem;
+                    height: 0.25rem;
                     padding: 0.185185rem;
                     right: -0.04rem;
                     top: 50%;
@@ -133,39 +138,42 @@
                 }
                 b.queren{
                     position: absolute;
-                    right: 0;
-                    top: 0.53rem;
+                    right: -0.05rem;
+                    top: -0.014rem;
                     width: 1.2rem;
-                    height: 0.46rem;
-                    background: $login006 no-repeat;
-                    background-size: 1.2rem 0.46rem;
+                    height: 0.54rem;
+                    background: $daili02 no-repeat;
+                    background-size: 1.2rem 0.54rem;
                 }
             }
             li:nth-of-type(1).baiBJ{
+                input{
+                    color: #000;
+                }
                 background-color: rgba(255,255,255,1);    
             }
         }
         i{
             position:absolute;
-            right:-0.240741rem;
-            top:-0.240741rem;
+            right:0.04rem;
+            top:-0.1rem;
             width:0.944444rem;
             height:1.0rem;
-            background:$idmess03 no-repeat;
+            background: $off no-repeat;
             background-size:0.944444rem 1.0rem;
         }
         p{
             clear: both;
             position:relative;
             left:50%;
-            top: 0.192593rem;
+            top: 0rem;
             transform:translateX(-50%);
             -webkit-transform:translateX(-50%);
             -moz-transform:translateX(-50%);
-            width:3.361111rem;
-            height:1.274074rem;
-            background:$idmess04 no-repeat;
-            background-size:3.361111rem  1.074074rem;
+            width: 3.2rem;
+            height: 1.05rem;
+            background: $chang no-repeat;
+            background-size: 3.2rem  1.05rem;
         }
 }
   // border-radius
@@ -187,8 +195,8 @@
         idMessage: false,
         ZD: true,   // 只读
 
-        name : localStorage.oxName,
-        id : localStorage.oxUid,
+        name : localStorage.brName,
+        id : localStorage.brUid,
       }
     },
     mounted: function(){

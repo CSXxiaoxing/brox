@@ -3,7 +3,7 @@
 		height: 100%;
 		width: 100%;
 
-		background-color: #F5E6D1;
+		background-color: #4A4D80;
 		overflow-y:auto;
 		header {
 			width:100%;
@@ -31,12 +31,12 @@
 		        	padding-left: 0.277778rem;
 		            &>i {
 		                display: inline-block;
-		                width: 0.648148rem;
+		                width: 0.448148rem;
 		                height: 0.509259rem;
-		                background: $roomAll -4.351852rem -1.481481rem no-repeat;
-		                background-size: 5.555556rem;
+		                background: $back no-repeat;
+		                background-size: 0.448148rem 0.509259rem;
 		                position: relative;
-		                top: 0.402963rem;
+		                top: 50%;
 		                transform: translate(0, -50%);
 		                a {
 		                    padding: 0.259259rem 0.37037rem;
@@ -46,16 +46,27 @@
 		    }
 		}
 		center{
-			position:absolute;
-			top:1.87037rem;
-			height:15.740741rem;
-			overflow-y:auto;
+			position: absolute;
+			top: 1.87037rem;
+			height: 15.740741rem;
+			width: 100%;
+			overflow-x: hidden;
+			overflow-y: auto;
+			position: relative;
 			table{
 				margin-left:0.277778rem;
 				margin-top: 0.296296rem;
 				width:9.481481rem;
 				text-align: center;
 				background-color: white;
+				border-radius: .12rem;
+				position: relative;
+				// left: 50%;
+				transform: translate(-0.14rem,0);
+				box-shadow: 0 0 0.1rem 0.01rem #111;
+				border: 1px solid #fff;
+				background-color: #817AC0;
+
 				img{
 					top:0.192593rem;
 					width:0.6rem;
@@ -74,32 +85,31 @@
 					}
 				}
 				thead{
-					color:#4D6131;
+					color: #fff;
 					tr:nth-of-type(1){
-						background-color:#E5FCC7;
 						font-size: 0.444444rem;
 						font-weight: bold;
-						line-height: 0.851852rem; 
+						line-height: 0.851852rem;
 					}
 					tr:nth-of-type(2){
 						font-size:0.388889rem;
-						background-color:#D0E7B1; 
+						background-color: #615B99; 
 					}
 				}
 				tbody{
-					color:#5F8C25;
+					color: #F5F6A8;
 					font-size:0.416667rem;
 					tr:nth-of-type(2n){
-						background-color: #EFF8E3;
+						// background-color: #EFF8E3;
 					}
 					td:nth-of-type(1){
 						text-align:left;
 						padding-left: 0.277778rem;
-						color:#499BA5;
+						// color: #499BA5;
 						width:3.083333rem;
 					}
 					td:nth-of-type(2).red{
-							color:red;
+							color: #FAC7DA;
 					}
 					.total{
 						background-color:#D0E7B1;

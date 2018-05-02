@@ -27,27 +27,14 @@
         <mt-button @click="buyKa(2)">微信支付</mt-button>
     </mt-popup >
 
-    <h1> <i v-on:click="buyRoom = false"></i></h1>
-
     <ul>
-      <li>
-        <table v-for='(cards,quest) in list'>
-          <tr>
-            <td rowspan="3"><img src="src/srcImg/oxCrowd017.png" height="250" width="258" alt=""></td>
-            <td>{{cards.title}}</td
-          </tr>
-          <tr>
-            <td v-if="quest != 3">RMB：{{cards.price}}元</td>
-            <td v-if="quest == 3" class="sev">7折优惠&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          </tr>
-          <tr>
-            <td>
-                <button v-if="quest != 3" @click='buyCard(cards.num,cards.id)'></button>
-                <mt-button  v-if="quest == 3" class="sevb" type="primary" @click="more"></mt-button>
-            </td>
-          </tr>
-        </table>
-      </li>
+        <li v-for='data in 4'>
+            <div>
+                <p>钻石X999</p>
+                <p>RMB:10元</p>
+                <mt-button></mt-button>
+            </div>
+        </li>
     </ul>
   </mt-popup>
   <loading v-if='loading'></loading>
@@ -87,95 +74,50 @@
             left: 0.018519rem;
         }
     }
-    .buy{
-        width: 7.768519rem;
-        height: 12.944444rem;
-        background: $buyRoom no-repeat;
-        background-size: 7.768519rem 12.944444rem;
-
-        h1{
-            height: 1.9rem;
-            font-size:0.555556rem;
-            font-weight:bolder;
-            color: #5E4205;
-            text-align:center;
-            i{
-                position:absolute;
-                right:0.185185rem;
-                top:0.26rem;
-                width: 0.925926rem;
-                height: 0.925926rem;
-                padding-right:0.092593rem;
-                background: $oxCrowd_018 no-repeat;
-                background-size: 0.925926rem 0.925926rem;
-            }
-        }
+    .buy{   // 购买钻石
+        width: 7rem;
+        height: 11.1rem;
+        background: $buyzs no-repeat;
+        background-size: 7rem 11.1rem;
         ul{
             text-align: center;
+            width: 5.277778rem;
+            height: 100%;
+            padding-top: 2.5rem;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,0);
             li{
-                table{
-                    img{
-                      width:2.388889rem;
-                      height:2.314815rem;
+                width: 5.277778rem;
+                height: 1.851852rem;
+                background: $zs02 no-repeat;
+                background-size: 5.277778rem 1.851852rem;
+                margin-bottom: .092593rem;
+                position: relative;
+                &>div {
+                    color: #fff;
+                    font-size: .333333rem;
+                    line-height: .37037rem;
+                    p:nth-of-type(2){
+                        color: #F3E8EE;
+                        margin-top: .03rem;
                     }
-                    position: relative;
-                    left:3.05rem;
-                    bottom: 0.277778rem;
-                    width: 5.925926rem;
-                    height: 2.5rem;
-                    transform: translate(-50%, 0);
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    transform: translate(0,-50%);
+                    width: 60%;
+                }
+                button {
+                    margin-top: .092593rem;
+                    width: 1.722222rem;
+                    height: .555556rem;
+                    background: $buy no-repeat;
+                    background-size: 1.722222rem .555556rem;
+                    border: 0 none;
+                    border-radius: (.555556/2)+rem
                 }
             }
-        }
-        table{
-            font-size:0.388889rem;
-            background-color: white;
-            width:6.111111rem;
-            height: 2.5rem;
-            @include border-radius(0.277778rem);
-            margin: 0.185185rem 0.0rem 0.185185rem 0.833333rem;
-            text-align:left;
-            button{
-                width: 2.416667rem;
-                height: 0.685185rem;
-
-                background: $oxCrowd_016 no-repeat;
-                background-size: 2.416667rem 0.685185rem;
-                @extend .button;
-            }
-            tr{
-                td{
-                    img{
-                        display: block;
-                        width: 2.1rem;
-                        height: 2.1rem;
-                        margin-left: 0.15rem;
-                    }
-                }
-            }
-            
-            tr:nth-of-type(1){
-                td:nth-of-type(2){
-                    padding-top:0.277778rem;
-                    padding-left: 0.185185rem;
-                }
-            }
-
-            tr:nth-of-type(2){
-                color:#149824;
-                td{
-                    padding-left: 0.185185rem;
-                }
-            }
-            .sev{
-                text-align: left;
-                color:#3B87C5;
-            }
-            .sevb{
-                background: $oxCrowd_019 no-repeat;
-                background-size: 2.416667rem 0.685185rem;
-            }
-            
         }
     }
     .caress{
@@ -333,8 +275,8 @@
       return {
         loading: false,     // loading
         buyK: false, // 选择支付方式
-
         buyRoom: false,
+
         moreCard: false,
         cardNum: '',
         cardNumError: 'n张以上，几折优惠',
@@ -344,30 +286,7 @@
         num_id:0,
       };
     },
-    mounted:function(){
-        //房卡列表
-          var self = this;
-          http.post('/RoomCard/getData',{
-
-          })
-          .then(res=>{
-            //console.log(res)
-            if(res.status == 1){
-                for(let i in res.data){
-                    self.list.push({
-                        title : res.data[i].zc_title,
-                        price : res.data[i].zn_price,
-                        image : res.data[i].zc_image,
-                        num : res.data[i].zn_num,
-                        id : res.data[i].zn_cat_id,
-                    })
-                }
-                self.cardNumError = self.list[3].num + '张以上，7折优惠'
-                console.log(self.list);
-                console.log(self.list);
-            }
-          })
-    },
+    mounted:function(){},
     methods: {
         buyKa(n){   // 购买
 

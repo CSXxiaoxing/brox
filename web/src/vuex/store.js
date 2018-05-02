@@ -8,23 +8,28 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     // 字符串数据存储
     // 使用demo : this.$store.state.Music.autoplay
-    // 使用demo : this.$store.state.system.lodin
+    // 使用demo : $store.state.user.type
     state: {
         // 用户信息
         user: {
-            userName: localStorage.oxName,
-            userID  : localStorage.oxUid,
-            userImg : localStorage.oxImg,
+            userName: localStorage.brName,
+            userID: localStorage.brUid,
+            userImg: localStorage.brImg,
+            userCard: localStorage.brCardNum,
+            dlGame: localStorage.dlGame,// 是否代理
+            dlPerson: localStorage.dlPerson,// 代理人号码
+            type: 5,    // z
             friend  : [],   // 好友列表
             friendId: [],   // 好友的id
+            dict: {},       // 群_头像字典
+            dictH: {},      // 好友_头像字典
         },
-        // 环信消息处理 
-        system: {
-            friend: [], // 好友操作信息
-            friendList: [], // 好友列表
-            lodin: [],      // 等待确认是否允许进入房间
-            Q_amount: {}, // 群消息数量统计
-            t: 0,
+        room: { // 房间数据
+            z: {
+                status: 0,
+            }, // 庄
+            sz: [],     // 上庄人员
+            pt: [],     // 普通玩家
         },
         oxCrowd: {  // 牛群游戏大厅
             notice: [],     // 系统公告
@@ -34,13 +39,6 @@ export default new Vuex.Store({
             musi: true,     // 音效
         },
 
-
-
-
-        room: {     // 房间初始数据
-            cardNum: 5, // 几牌
-            minFen : 0, // 最低上庄分数
-        },
         // 默认数据
         initRoom: {
             radioValue: ['比J', '比Q', '比K', '无牛关机 (庄赢)'],
@@ -164,14 +162,7 @@ export default new Vuex.Store({
                     if(!a[Qid]){
                         a[Qid] = [];
                     }
-                    if(!self.state.system.Q_amount[Qid]){
-                        self.state.system.Q_amount[Qid] = 0;
-                    }
-                    self.state.system.t+=1;
-                    self.state.system.Q_amount[Qid]+=1;
-                    console.log(self.state.system.Q_amount)
-                    // console.log(self.state.system.Q_amount[Qid])
-                    // self.state.system.friend = 
+                    self.state.system.Q_Num+=1;
                     // 本地消息储存
                     var QUN_LIAO = {
                         txt: 'txt',
@@ -186,11 +177,8 @@ export default new Vuex.Store({
                     console.log(a)
                     self.state.txt = a;
                     localStorage.oxQun = JSON.stringify(a);
-                } 
-
-
+                }
                 else if (message.type == 'chat' ){      // 单聊
-                    
                     var a = JSON.parse(localStorage.oxTxtAll)
                     // var o = message.from    // 来自谁
                     var date = new Date().getTime();
@@ -199,7 +187,12 @@ export default new Vuex.Store({
                     if(!a[from]){
                         a[from] = [];
                     }
-
+                    if(!self.state.system.H_Num[from]){
+                        self.state.system.H_Num[from] = 0;
+                    }
+                    console.log(from)
+                    self.state.system.H_All += 1;
+                    self.state.system.H_Num[from] += 1;
                     // 本地消息储存
                     var QUN_LIAO = {
                         txt: 'txt',
@@ -311,7 +304,7 @@ export default new Vuex.Store({
                     return false;
                 }
                 
-                console.log(message)
+                // console.log(message)
                 if(message.type == 'subscribe'){
                     // 别人申请加你为好友
                     var Msg = message.status.split('#(h9aoyou*)')

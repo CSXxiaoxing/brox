@@ -3,9 +3,6 @@ import request from 'superagent';
 
 const LOCAL_SERVER = WANJI_ALL_URL; 
 
-const DEV_SERVER = '';
-const PRO_SERVER = '';
-
 function getUrl(path) {
     if (path.startsWith('http')) {
         return path;
@@ -28,12 +25,10 @@ const HttpClient = {
     }),
 
     post: (path, formdata, query, vm) => new Promise((resolve, reject) => {
-        
         if(vm){ vm['loading'] = true }
-    	
         if (formdata) {
-            formdata['token'] = localStorage.oxToken || '' ;
-            formdata['uid'] = localStorage.oxUid || '' ;
+            formdata['sign'] = localStorage.brToken || '' ;
+            formdata['uid'] = localStorage.brUid || '' ;
         }
         request
             .post(getUrl(path))
@@ -44,7 +39,9 @@ const HttpClient = {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(res.body);
+                    // console.log(res)
+                    // resolve(res.text);
+                    resolve(JSON.parse(res.text));
                 }
                 if(vm)(vm['loading'] = false)
             });

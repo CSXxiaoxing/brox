@@ -39,57 +39,6 @@ function weixin_WANJI_DL(){
             );
         }
     }
-
-
-
-
-    // var auths=null;
-    // function plusReady(){
-    //     // 扩展API加载完毕，现在可以正常调用扩展API
-    //     plus.oauth.getServices( function(services){
-    //         auths = services;
-    //         alert(JSON.stringify(auths[0]))
-    //         alert('正在发起请求')
-    //         authLogin()
-    //     }, function(e){
-    //         alert( "获取分享服务列表失败："+e.message+" - "+e.code );
-    //     })
-    // }
-    // if(window.plus){
-    //     plusReady();
-    // }else{
-    //     document.addEventListener('plusready',plusReady,false);
-    // }
-    // // alert(666) authLogin
-
-    // // 登录操作
-    // function authLogin(){
-    //     var s = auths[0];
-        
-    //     if (!s.authResult) {
-    //         s.login(function(e) {
-    //             alert("登录认证成功！");
-    //             authUserInfo();
-    //         }, function(e) {
-    //             alert( "登录认证失败："+e.message+" - "+e.code );
-    //             authUserInfo();
-    //             if(e.code=="-2"){
-    //                 if ( plus.os.name == "Android" ) {
-    //                     plus.runtime.launchApplication({pname:"com.tencent.mm"});
-    //                 } else if ( plus.os.name == "iOS" ) {
-    //                     plus.runtime.launchApplication({action:"weixin://RnUbAwvEilb1rU9g9yBU"});
-    //                 }
-    //                 // setTimeout(function(){
-    //                 //     authLogin()//再次执行微信登录
-    //                 // },4500)
-    //             }
-    //         });
-    //     } else {
-    //         alert("已经登录认证！");
-    //         authUserInfo();
-    //     }
-    // }
-
     // 获取登录用户信息操作
     function authUserInfo(){
         var s;
@@ -109,7 +58,7 @@ function weixin_WANJI_DL(){
                 var formData = new FormData();
                 formData.append('feifei', JSON.stringify(s.userInfo));
 
-                xhr.open('post', WANJI_ALL_URL+"/Member/wxLogin");
+                xhr.open('post', WANJI_ALL_URL +'/Member/wxLogin');
                 //发送请求
                 xhr.send(formData);
                 xhr.onreadystatechange = function (e) {

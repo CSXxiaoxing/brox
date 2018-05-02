@@ -3,7 +3,7 @@
             v-model="message"
             popup-transition="popup-fade"
             class="message">
-    	<header>
+        <header>
             <ul>
                 <li>
                     <i><a @click='message = false'></a></i>
@@ -133,17 +133,17 @@
 </style>
 
 <script type="text/javascript">
-    import http from '../../utils/httpClient.js';
-    import Vue from 'vue';
-    import loading from '../loading/loading.vue';
-    import router from '../../router/';
+    import http from '../../utils/httpClient.js'
+    import Vue from 'vue'
+    import loading from '../loading/loading.vue'
+    // import router from '../../router/'
     Vue.component('loading', loading)
 
-	export default {
-        data: function(){
+export default {
+        data : function(){
             return {
                 loading: false,     // loading
-                message: false,     
+                message: false,
                 content: '',
                 num: 0,
                 maxLength:50,
@@ -166,30 +166,27 @@
                     this.num = 50;
                     this.content=this.content.slice(0,this.maxLength) + '' ;
                 }
-            },  
+            },
             placard(){
                 var vx = this.$store.state.placard;
                 var self = this;
-                if(self.content==''){
-
-                }else{
+                if(self.content!=''){
                     http.post( '/RoomJoin/placard' ,{
-                    content : self.content,
-                    token: localStorage.oxToken,
-                    roomid : self.roomid,
-                }, '' , this)
-                    .then(res => {            
-                    console.log(res)          
-                        if(res.status == 1 || res.status == 3){
-                           vx.message = self.content;
-                           self.content="";
-                           self.num = 0;
-                           self.message = false;
-                        }
-                        
-                    })
+                        content : self.content,
+                        token: localStorage.oxToken,
+                        roomid : self.roomid,
+                    }, '' , this)
+                        .then(res => {
+                        // console.log(res)
+                            if(res.status == 1 || res.status == 3){
+                                vx.message = self.content;
+                                self.content='';
+                                self.num = 0;
+                                self.message = false;
+                            }
+                        })
                 }
             }
         }
-    }
+}
 </script>

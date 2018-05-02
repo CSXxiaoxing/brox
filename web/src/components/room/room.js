@@ -1,24 +1,20 @@
 const room = {
     jetton : function(idx,self,e){  // 选择筹码
         e = e || event;
-        self.chouma.one = idx;
-        self.chouma.LandR = `left:${e.pageX}px;top:${e.pageY}px;`
+        if (self.chouma.one == idx) {
+            self.chouma.one = -1;
+        } else {
+            self.chouma.one = idx;
+            self.chouma.LandR = `left:${e.pageX}px;top:${e.pageY}px;`
+        }
         return this;
     },
     yazhu : function(idx,self,http,e){ // 押注
         e = e || event;
-        // console.log(e.target)
-        var fefefe = [1,5,10,50,100];
-        if(self.user.type == 1 || self.user.type == 2 || self.user.initType != 5 || self.chouma.one<=0 || idx == self.logic.z_index){  //房主和庄家不参与游戏
+        if (self.user.initType != 5) {  // 压分阶段
             return false;
         }
-        
-        var maxBel = '';
-        if(self.main.bei==1){
-            maxBel = self.main.maxBei;  // 最大倍率
-        }else{
-            maxBel = 1;  // 不翻倍
-        }
+        var fefefe = [1,5,10,50,100];
         var fen = null;
         switch(self.chouma.one){
             case 1:  fen=1;   break;
@@ -27,38 +23,29 @@ const room = {
             case 4:  fen=50;  break;
             case 5:  fen=100; break;
         }
-
-        if(Number(self.main.minFen_x) < fefefe[idx] || (Number(self.user.myFen)-Number(fen*maxBel))<0){
-            return false;
-        }
-        var header_H = document.querySelector('#app').offsetHeight;
-        
-        var imgOnes = document.getElementsByClassName('imgOne');
-        var idxCard = self.move.bounce.length;
-        self.move.imgNum += 1;                          // 复制
-        self.move.srcImg[idxCard] = `src/srcImg/cc0${self.chouma.one}.png`;        // 赋值
-        // console.log(e.s)
-        self.$set(self.move.srcImgStyle, idxCard ,`visibility:visible;left:${e.clientX}px;top:${e.clientY}px;z-index:999;width:1.2rem;height:1.2rem;transform:translate(-50%,-50%);transition:all 2s;`);
-        self.move.bounce[idxCard] = 6;                  // 坠落动效and计数
-
-        http.post('/RoomJoin/newChargePoints',{
-            uid     : self.user.uid,     // 个人uid
-            roomid  : self.user.rid,     // 房间id
-            rate    : maxBel,            // 倍率
-            score   : fen,               // 压分分数
-            num     : self.user.ju,      // 局数
-            few     : idx,               // 第几副牌
+        http.post('/Card/cardLog', {
+            room_id: self.user.rid,     // 房间id
+            card_num: idx,               // 第几副牌
+            points: fen,               // 压分分数
+            // num: self.user.ju,      // 局数
         })
-        .then(res => {
-            // console.log(res)
-            if(res.status != 1){
-                self.errorTips = res.msg;
-                self.careTip = true;
-            } else {
-                self.chouma.liCss[idx]=1;
-            }
-        })
+            .then(res => {
+                // console.log(res)
+                if (res.code == 200) {
+                    self.chouma.liCss[idx] = 1;
+                    // self.errorTips = res.msg;
+                    // self.careTip = true;
+                }
+            })
         return this;
+        // var header_H = document.querySelector('#app').offsetHeight;
+        // var imgOnes = document.getElementsByClassName('imgOne');
+        // var idxCard = self.move.bounce.length;
+        // self.move.imgNum += 1;                          // 复制
+        // self.move.srcImg[idxCard] = `src/srcImg/cc0${self.chouma.one}.png`;        // 赋值
+        // // console.log(e.s)
+        // self.$set(self.move.srcImgStyle, idxCard ,`visibility:visible;left:${e.clientX}px;top:${e.clientY}px;z-index:999;width:1.2rem;height:1.2rem;transform:translate(-50%,-50%);transition:all 2s;`);
+        // self.move.bounce[idxCard] = 6;                  // 坠落动效and计数
     },
     cuoinit : function(self,ev){ // 搓牌开始
         ev = ev || event;

@@ -79,45 +79,6 @@ html,body{
     background: rgba(0, 0, 0, 0.2);
 } 
 
-// input错误提示
-input.error {
-    border: 0.026667rem solid #ff3333!important;
-    transition-duration: .2s;
-    transition-timing-function: cubic-bezier(.68,-.55,.265,1.55); 
-    animation: inputmove .1s linear 6; 
-}
-@keyframes inputmove{
-   0%{
-       -webkit-transform: translate(0%, 1%);
-          -moz-transform: translate(0%, 1%);
-           -ms-transform: translate(0%, 1%);
-            -o-transform: translate(0%, 1%);
-               transform: translate(0%, 1%);
-   }
-   100%{
-       -webkit-transform: translate(0%, -1%);
-          -moz-transform: translate(0%, -1%);
-           -ms-transform: translate(0%, -1%);
-            -o-transform: translate(0%, -1%);
-               transform: translate(0%, -1%);
-   }
-}
-@-webkit-keyframes inputmove{
-   0%{
-        -webkit-transform: translate(0%, 1%);
-           -moz-transform: translate(0%, 1%);
-            -ms-transform: translate(0%, 1%);
-             -o-transform: translate(0%, 1%);
-                transform: translate(0%, 1%);
-   }
-   100%{
-        -webkit-transform: translate(0%, -1%);
-           -moz-transform: translate(0%, -1%);
-            -ms-transform: translate(0%, -1%);
-             -o-transform: translate(0%, -1%);
-                transform: translate(0%, -1%);
-   }
-}
 
 #iframeCss{
     height: 0;
@@ -305,20 +266,6 @@ input.error {
     }
 }
 
-//客服系统
-.easemobim-mobile-body{
-    transform: translate(50%,50%) scale(2,2);
-    .easemobim-chat-panel.easemobim-mobile{
-        width: 50%!important;
-        height: 50%!important;
-        left: 0!important;
-        top: 0!important;
-        right: auto!important;
-        bottom: auto!important;
-        border-radius: 0;
-        box-shadow: none;
-    }
-}
 
 // 录音样式
 .rp {
