@@ -13,6 +13,8 @@
     "css-loader": "^0.28.7",
     "easemob-websdk": "^1.5.0",
     "file-loader": "^1.1.6",
+    "image-webpack-loader": "^4.2.0",
+    "imagemin-webpack-plugin": "^2.1.1",
     "mint-ui": "^2.2.13",
     "style-loader": "^0.19.1",
     "superagent": "^3.5.2",

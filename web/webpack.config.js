@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var ImageminPlugin = require('imagemin-webpack-plugin').default
 
 module.exports = {
   entry: './src/main.js',
@@ -75,7 +76,15 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  // plugins: [    // 图片压缩
+  //       new ImageminPlugin({
+  //           disable: process.env.NODE_ENV !== 'production', 
+  //           pngquant: {
+  //               quality: '95-100'
+  //           }
+  //       })
+  //   ]
 }
 
 if (process.env.NODE_ENV === 'production') {

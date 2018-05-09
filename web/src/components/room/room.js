@@ -11,41 +11,39 @@ const room = {
     },
     yazhu : function(idx,self,http,e){ // 押注
         e = e || event;
+        // console.log(idx)
         if (self.user.initType != 5) {  // 压分阶段
             return false;
         }
-        var fefefe = [1,5,10,50,100];
+        console.log(self.$store.state.user.userCard)
+        var fefefe = [ 1, 5, 10, 50, 100 ];
         var fen = null;
         switch(self.chouma.one){
-            case 1:  fen=1;   break;
-            case 2:  fen=5;   break;
-            case 3:  fen=10;  break;
-            case 4:  fen=50;  break;
-            case 5:  fen=100; break;
+        case 1:  fen=1;   break;
+        case 2:  fen=5;   break;
+        case 3:  fen=10;  break;
+        case 4:  fen=50;  break;
+        case 5:  fen=100; break;
+        }
+        if (Number(self.$store.state.user.userCard) < fen){
+            return false;
         }
         http.post('/Card/cardLog', {
             room_id: self.user.rid,     // 房间id
             card_num: idx,               // 第几副牌
             points: fen,               // 压分分数
-            // num: self.user.ju,      // 局数
         })
             .then(res => {
-                // console.log(res)
                 if (res.code == 200) {
                     self.chouma.liCss[idx] = 1;
-                    // self.errorTips = res.msg;
-                    // self.careTip = true;
+                    var header_H = document.querySelector('#app').offsetHeight;
+                    var imgOnes = document.getElementsByClassName('clickFen02');
+                    var idxCard = self.move.bounce.length;
+                    self.move.imgNum += 1;                          // 复制
+                    self.$set(self.move.srcImgStyle, idxCard, `visibility:visible;left:${e.clientX-10}px;top:${e.clientY-10}px;z-index:510;transform:translate(-50%,-50%);`);
+                    self.move.bounce[idxCard] = fen;                  // 压分分数
                 }
             })
-        return this;
-        // var header_H = document.querySelector('#app').offsetHeight;
-        // var imgOnes = document.getElementsByClassName('imgOne');
-        // var idxCard = self.move.bounce.length;
-        // self.move.imgNum += 1;                          // 复制
-        // self.move.srcImg[idxCard] = `src/srcImg/cc0${self.chouma.one}.png`;        // 赋值
-        // // console.log(e.s)
-        // self.$set(self.move.srcImgStyle, idxCard ,`visibility:visible;left:${e.clientX}px;top:${e.clientY}px;z-index:999;width:1.2rem;height:1.2rem;transform:translate(-50%,-50%);transition:all 2s;`);
-        // self.move.bounce[idxCard] = 6;                  // 坠落动效and计数
     },
     cuoinit : function(self,ev){ // 搓牌开始
         ev = ev || event;

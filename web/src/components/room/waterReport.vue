@@ -30,7 +30,7 @@
     					<td colspan="4">第{{waterList.length - listkey}}局</td>
     				</tr>
     				<tr>
-    					<td>昵称</td> <td>分数流水</td> <td>抽水分数</td> <td>结余分数</td>
+    					<td>昵称</td> <td>当前钻石</td> <td>奖金分数</td> <td>结余钻石</td>
     				</tr>
     			</thead>
 

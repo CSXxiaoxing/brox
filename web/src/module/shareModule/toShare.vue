@@ -3,24 +3,24 @@
   position="bottom"
   v-model="toShare" class="share">
         <div class="jiantou">
-            <img src="src/srcImg/toShare003.png" alt="" />
+            <img src="src/oxPng/toShare003.png" alt="" />
             <p v-if='share == "home"'>分享给朋友</p>
             <p v-if='share == "room"'>选择邀请方式</p>
-            <img src="src/srcImg/toShare004.png" alt="" />
+            <img src="src/oxPng/toShare004.png" alt="" />
         </div>
 
         <div class="toShare_center">
     		<dl @click='dl'>
-    			<dt><img src="src/srcImg/toShare001.png" height="174" width="174"></dt>
+    			<dt><img src="src/oxPng/toShare001.png" height="174" width="174"></dt>
     			<dd>微信好友</dd>
     		</dl> 
     		<dl v-if='share == "home"' @click='cope'>
     			<dt>
-                <img src="src/srcImg/toShare002.png" height="174" width="174"></dt>
+                <img src="src/oxPng/toShare002.png" height="174" width="174"></dt>
     			<dd>复制链接</dd>
     		</dl> 
             <dl v-if='share == "room"' @click='room_toShare'>
-                <dt><img src="src/srcImg/toShare005.png" height="174" width="174"></dt>
+                <dt><img src="src/oxPng/toShare005.png" height="174" width="174"></dt>
                 <dd>游戏好友</dd>
             </dl>
         </div>

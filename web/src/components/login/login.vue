@@ -9,10 +9,10 @@
             <mt-button @click="careTip = false">  确定
             </mt-button>
         </mt-popup>
-        <h1 @click='test(1)'>____</h1>
-        <h1 @click='test(2)'>————</h1>
-        <h1 @click='test(3)'>——33——</h1>
-        <h1 @click='test(18813975741)'>——1sss——</h1>
+        <!-- <h1 @click='test(1)'>____</h1> -->
+        <!-- <h1 @click='test(2)'>————</h1> -->
+        <!-- <h1 @click='test(3)'>——33——</h1> -->
+        <!-- <h1 @click='test(18813975741)'>——1sss——</h1> -->
         <mt-button @click='wxLogin'></mt-button>
         <loading v-if='loading'></loading>
     </div>
@@ -78,19 +78,18 @@
                 // $store
                 this.loading=true;
                 var self = this;
-
                 window.weixin_DL = function(wx_data){
                     self.loading=false;
                     var data = wx_data.data;
                     self.goease(data.id)
                     localStorage['brToken'] = data.sign;
                     localStorage['brUid'] = data.id;
-                    localStorage['brImg'] = data.member_info.headimg;
+                    localStorage['brImg'] = data.headimg;
                     localStorage['brName'] = data.nickname;
                     localStorage['brCardNum'] = data.diamonds;
                     localStorage['dlGame'] = data.is_agent;
                     self.$store.state.user.userID = data.id;
-                    self.$store.state.user.userImg = data.member_info.headimg;
+                    self.$store.state.user.userImg = data.headimg;
                     self.$store.state.user.userName = data.nickname;
                     self.$store.state.user.userCard = data.diamonds;
                     self.$store.state.user.dlGame = data.is_agent;
@@ -134,7 +133,7 @@
             goease(id){
                 // 连接io服务端
                 br_goEasy = new GoEasy({
-                    appkey: 'BC-47f61d998b3443f884b05c12e2208d96',
+                    appkey: 'BC-d074375f4cab438da73d82aa9dcf6c6e',
                     userId: `'${id}'`,
                     onConnected: function () {
                         console.log("成功连接GoEasy。");

@@ -13,7 +13,7 @@ $idmes : url('../../oxImg/idMessage2.png'); // 头像背景
 // 房间
 $room : url('../../oxImg/room.jpg'); // 广播bj
 $sz : url('../../oxImg/sz.png');    // 申请上庄
-$xz : url('../../oxImg/room004.png');    // 申请上庄
+$xz : url('../../oxImg/room004.png');    // 取消上庄
 $cmbj : url('../../oxImg/cmbj.png');    // 筹码背景
 $back : url('../../oxImg/back.png');    // 返回箭头《
 $liBack : url('../../oxImg/liBack.png');    // li背景
@@ -22,117 +22,16 @@ $buyzs : url('../../oxImg/buyzs.png');    // 购买背景
 $zs02 : url('../../oxImg/zs02.png');    // 购买背景li
 $buy : url('../../oxImg/buy.png');    // 购买
 $open : url('../../oxImg/open.png');    // open奖
+$room008: url('../../oxImg/room008.png'); // 空位
+$room031: url('../../oxImg/room031.png'); // 庄背景
+$room_left03: url('../../oxImg/room_left03.png'); // 文字阴影
+// 未节省精灵图
+$homeAll: url('../../oxImg/home_all.png');
+$roomAll: url('../../oxImg/room_all.png');
+// 旧
+$zhifu: url('../../oxImg/zhifu.png');   // 购买房卡-支付
+$careTip01: url('../../oxImg/careTip01.png');   // 购买选择-x
 
-
-
-
-
-
-
-
-//  Sprites size idmess01 cc00
-$w600: 5.555556rem;
-// 随机庄背景颜色
-$bgColor: #ccc;
-
-// room url
-$roomAll: url('../../img/room_all.png');
-
-// X_login 
-$login002 : url('../../image/login002.png'); // logo
-$login003 : url('../../image/login003.png'); // 微信登录
-$login004 : url('../../image/login004.png'); // 手机登录
-$login005 : url('../../image/login005.png'); // 登录 背景
-$login006 : url('../../image/login006.png'); // 确认键
-$login007 : url('../../image/login007.png'); // 注册/找回密码
-$login008 : url('../../image/login008.png'); // 关闭叉叉
-$login009 : url('../../image/login009.png'); // 验证码背景
-$login010 : url('../../image/login010.png'); // 免密登录按钮
-
-
-// X_oxCrowd
-$oxCrowd_HDcha: url('../../image/HDcha.png'); // 加入房间关闭叉叉
-$oxCrowd_LIBJ: url('../../image/oxCrowd000.png'); // li背景
-$oxCrowd_BJKF: url('../../image/oxCrowd002.png'); // li背景开放
-$oxCrowd_Join: url('../../image/oxCrowd003.png'); // 加入房间背景
-$oxCrowd_LV: url('../../image/oxCrowd004.png'); // 加入房间绿色按钮
-$oxCrowd_H: url('../../image/oxCrowd005.png'); // 加入房间黑色按钮
-$oxCrowd_MY: url('../../image/oxCrowd006.png'); // 我的房间
-$oxCrowd_KBJ: url('../../image/oxCrowd007.png'); // 选项卡背景
-$oxCrowd_010: url('../../image/oxCrowd010.png'); // li羽毛
-$oxCrowd_011: url('../../image/oxCrowd011.png'); // 创建房间背景
-$oxCrowd_013: url('../../image/oxCrowd013.png'); // 加号
-$oxCrowd_014: url('../../image/oxCrowd014.png'); // 减号
-$oxCrowd_015: url('../../image/oxCrowd015.png'); // 购买房卡
-$oxCrowd_016: url('../../image/oxCrowd016.png'); // 购买按钮
-$oxCrowd_018: url('../../image/oxCrowd018.png'); // 红色圆×
-$oxCrowd_019: url('../../image/oxCrowd019.png'); // 填写数量按钮
-
-
-// X_home
-$home_BJ: url('../../image/home001.png'); // 背景
-$home_KF: url('../../image/KF001.png'); // 客服
-$home_BLB: url('../../image/home002.png'); // 白喇叭
-$home_HLB: url('../../image/home005.png'); // 黄喇叭
-$home_FK: url('../../image/home003.png'); // 房卡
-
-// x_room
-$room001: url('../../image/room001.jpg'); // 主体背景
-$room003: url('../../image/room003.png'); // 申请上庄
-$room004: url('../../image/room004.png'); // 取消上庄
-$room005: url('../../image/room005.png'); // 筹码栏背景
-$room_left03: url('../../image/room_left03.png'); // 文字阴影
-$room008: url('../../image/room008.png'); // 空位
-$room009: url('../../image/room009.png'); // 玩法图标
-$room010: url('../../image/room010.png'); // 音乐图标
-$room011: url('../../image/room011.png'); // li背景
-$room012: url('../../image/room012.png'); // 轮庄设置
-$careTip01: url('../../image/careTip01.png'); // 绿色叉叉
-$careTip: url('../../image/careTip.png'); // 圆形确认键
-$room016: url('../../image/room016.png'); // 奖金分数
-$room017: url('../../image/room017.png'); // 重新开局按钮
-$room018: url('../../image/room018.png'); // 申请上庄
-$room019: url('../../image/room019.png'); // 联系房主
-$room020: url('../../image/room020.png'); // 下庄
-$room021: url('../../image/room021.png'); // 解散房间
-$room022: url('../../image/room022.png'); // 删除成员
-$room023: url('../../image/room023.png'); // 退出房间
-$room024: url('../../image/room024.png'); // 取消按钮
-$room025: url('../../image/room025.png'); // 确认按钮
-$room026: url('../../image/room026.png'); // 删除成员的钩
-$room028: url('../../image/room028.png'); // 邀请好友
-$room029: url('../../image/room029.png'); // 齿轮
-$room030: url('../../image/room030.png'); // 我要下庄
-$room031: url('../../image/room031.png'); // 庄背景 68px
-
-
-
-
-// x_qun
-$qun002: url('../../image/qun002.png'); // 聊天确认
-$qun005: url('../../image/qun005.png'); // 加减分按钮
-
-
-
-// home url careTip01
-$homeAll: url('../../img/home_all.png');
-$home02: url('../../img/module_home_buy1.png');
-$home08: url('../../img/module_home_no1.png');
-
-
-$chart01 : url('../../img/chart_Room6.png');
-
-//friend url 024
-$friend02 : url('../../img/friend3.png');
-$friend03 : url('../../img/friend4.png');
-
-
-
-//X_idmessage url
-$idmess01 : url('../../image/idMessage1.png');
-$idmess02 : url('../../image/idMessage2.png');
-$idmess03 : url('../../image/idMessage5.png');
-$idmess04 : url('../../image/idMessage4.png');
 
 // flex兼容处理器mixin 
 @mixin kabai() {    // 扑克摆位 

@@ -17,7 +17,7 @@ document.getElementById("vp").content = mstr;
 
 var br_goEasy = null;
 br_goEasy = new GoEasy({
-    appkey: 'BC-47f61d998b3443f884b05c12e2208d96',
+    appkey: 'BC-d074375f4cab438da73d82aa9dcf6c6e',
     userId: '25',
     onConnected: function () {
         console.log("成功连接GoEasy。");

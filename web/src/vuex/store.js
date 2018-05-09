@@ -4,7 +4,7 @@ import http from '../utils/httpClient.js';
 import bad from './badDict.js';
 
 Vue.use(Vuex);
-
+// this.$store.dispatch('yinx10010') // 音效
 export default new Vuex.Store({
     // 字符串数据存储
     // 使用demo : this.$store.state.Music.autoplay
@@ -34,8 +34,8 @@ export default new Vuex.Store({
         oxCrowd: {  // 牛群游戏大厅
             notice: [],     // 系统公告
         },
-        Music: {    // 音乐 /音效
-            autoplay: true, // 音乐
+        Music: {    // 音乐 /音效 
+            autoplay: false, // 音乐
             musi: true,     // 音效
         },
 
@@ -381,6 +381,13 @@ export default new Vuex.Store({
                 }
             };
             conn.open(options);
+        },
+        yinx10010(){
+            if (this.state.Music.musi){
+                var e = 'src/Music/10010.mp3'
+                var obj = new WebView_Object();
+                obj.playAudio(e);
+            }
         },
         get_R: function(){
             var self = this;

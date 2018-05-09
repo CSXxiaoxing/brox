@@ -1,5 +1,7 @@
 <template>
     <header>
+        <iframe :src="iframe" frameborder="0" :id='iframeCss'></iframe>
+        <audio src="src/Music/du001.mp3" autoplay v-if='$store.state.Music.autoplay' loop></audio>
         <mt-popup 
             v-model="wenti"
             popup-transition="popup-fade"
@@ -28,13 +30,16 @@
                     <div class="zs">
                         <img src="../../oxImg/zs.png" alt="">
                         <span>{{$store.state.user.userCard}}</span>
-                        <img src="../../oxImg/tj.png" @click='$refs.onbuyRoomChild.buyRoom=true'>
+                        <img src="../../oxImg/tj.png" @click='buyKa'>
                     </div>
                 </div>
                 <div class="r">
                     <img src="../../oxImg/home09.png" @click='toWx'>
                     <img src="../../oxImg/wh.png" v-if='$parent.wen == 999' @click='wenti=true'>
-                    <img src="../../oxImg/home08.png" v-if='$parent.wen != 999'>
+                    <img src="../../oxImg/home08.png" v-if='$parent.wen != 999' 
+                    v-show='!$store.state.Music.autoplay'>
+                    <img src="../../oxImg/home07.png" v-if='$parent.wen != 999'
+                    v-show='$store.state.Music.autoplay'>
                 </div>
             </div>
         </div>
@@ -54,7 +59,13 @@
                         <span>{{notices}}</span>
                     </mt-swipe-item>
                     <mt-swipe-item>
-                        <span>不充钱就想变强？不可能的。</span>
+                        <span>健康游戏，请勿赌博。</span>
+                    </mt-swipe-item>
+                    <mt-swipe-item>
+                        <span>富强、民主、文明、和谐、自由、平等。</span>
+                    </mt-swipe-item>
+                    <mt-swipe-item>
+                        <span>公正、法治、爱国、敬业、诚信、友善。</span>
                     </mt-swipe-item>
                 </mt-swipe>
             </p>
@@ -170,7 +181,8 @@
                     height: 100%;
                     width: .574074rem;
                     display: inline-block;
-                    position: relative;
+                    position: absolute;
+                    left: 0;
                     transform: translateX(-0.2rem);
                 }
                 img:nth-of-type(2){
@@ -180,6 +192,10 @@
                     padding: 0 .027778rem;
                     display: inline-block;
                     float: right;
+
+                    position: absolute;
+                    right: 0;
+                    transform: translate(0.2rem, -10%);
                 }
             }
         }
@@ -193,6 +209,53 @@
                 top: 50%;
                 transform: translate(0,-50%);
                 float: right;
+            }
+        }
+    }
+    .gb {
+        width: 100%;
+        height: 0.537037rem;
+        &>p {
+            overflow:hidden;
+            margin-left: 0.240741rem;
+            @include border-radius(0.925926rem);
+            width: 60%;
+            height: 0.537037rem;
+            background: $home06 no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,0);
+            box-sizing: border-box;
+            i{
+                position: absolute;
+                margin-left: 0.1rem;
+                left: 0;
+                top: 50%;
+                transform: translate(-30%,-50%);
+                text-align: left;
+                left: 0.240741rem;
+                display: inline-block;
+                width: .4rem;
+                height: .33rem;
+                padding-right: 10px;
+                background: $gb no-repeat;
+                background-size: .4rem .33rem;
+            }
+            .autoOx{
+                border-radius:100px;
+                color: #fff;
+                width:100%;
+                height: 0.537037rem;
+                padding-left: .84rem;
+                span{
+                    float: left;
+                    font-size: 0.277778rem;
+                    line-height: 0.555556rem;
+                    // position: relative;
+                    left: 0.648148rem;
+                }
+                
             }
         }
     }
@@ -213,9 +276,11 @@
     export default {
         data: function(){
             return {
+                iframe: '',
+                iframeCss: 'iframeCss',
                 hash: location.hash.slice(-4),
                 hashsh: location.hash,
-                wenti: false,   // 问题弹框
+                wenti: false,   // 问题弹框 
             }
         },
         mounted: function(){},
@@ -229,6 +294,11 @@
                 }else{
                     router.push({name: 'home'})
                 }
+            },
+            buyKa(){    // 购买钻石
+                this.$store.dispatch('yinx10010');
+
+                this.$refs.onbuyRoomChild.buyRoom=true;
             },
             toWx(){ // 微信邀请
                 this.$refs.ontoShare.dl();
