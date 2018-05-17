@@ -27,8 +27,8 @@ const HttpClient = {
     post: (path, formdata, query, vm) => new Promise((resolve, reject) => {
         if(vm){ vm['loading'] = true }
         if (formdata) {
-            formdata['sign'] = localStorage.brToken || '' ;
-            formdata['uid'] = localStorage.brUid || '' ;
+            formdata['sign'] = localStorage.brToken || '';
+            formdata['uid'] = localStorage.brUid || '';
         }
         request
             .post(getUrl(path))

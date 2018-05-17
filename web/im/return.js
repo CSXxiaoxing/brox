@@ -14,21 +14,21 @@
            plus.webview.currentWebview().setStyle({scrollIndicator:'none'});
            // Android处理返回键 Android
            plus.key.addEventListener('backbutton',function(){
-                if(location.hash == '#/'){
-                    var backcount=0;
-                    mui.back = function () {
-                    if (mui.os.ios) return;
-                    if (backcount > 0) {
-                    if (window.plus) plus.runtime.quit();
-                    return;
-                    };
-                    mui.toast('再按一次退出应用');
-                    backcount++;
-                    setTimeout(function () {
-                        backcount = 0;
-                    }, 1500);
-                    };
-                }
+                // if(location.hash == '#/'){
+                //     var backcount=0;
+                //     mui.back = function () {
+                //     if (mui.os.ios) return;
+                //     if (backcount > 0) {
+                //     if (window.plus) plus.runtime.quit();
+                //     return;
+                //     };
+                //     mui.toast('再按一次退出应用');
+                //     backcount++;
+                //     setTimeout(function () {
+                //         backcount = 0;
+                //     }, 1500);
+                //     };
+                // }
                if(location.hash == '#/home' || location.hash == '#/oxCrowd' || location.hash.slice(0,7) == '#/room/'){
                    console.log(location.hash)
                    console.log(plus.os.name)

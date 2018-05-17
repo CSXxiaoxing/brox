@@ -16,7 +16,7 @@
                     </tr>
                     <tr v-for='(data, ix) in obj[0].niu'>
                         <td :style='ix==obj[0].banker ? "color: #F6BBBD;":""'>
-                            {{data}}
+                            {{oox[data]}}
                         </td>
                     </tr>
                     </table>
@@ -119,6 +119,7 @@ Vue.component('loading', loading)
             cardNum : this.$store.state.idRoom.cardFn,
             bureau : [],
             cardResult : [],
+            
             // unshift
             index : [],
             ooxData: [],

@@ -34,7 +34,8 @@ function weixin_WANJI_DL(){
                 authUserInfo();
             }, function(e){
                 alert( "登录认证失败："+e.message+" - "+e.code );
-            }, {appid:"wxa1bc8e9b951839dd"  // 微信应用的appid
+            } 
+            ,{appid:"wx045683298d3a2a2f"  // 微信应用的appid
                 ,scope:"snsapi_userinfo"}   // 授权获取用户信息
             );
         }

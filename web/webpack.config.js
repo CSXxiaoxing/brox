@@ -81,7 +81,8 @@ module.exports = {
   //       new ImageminPlugin({
   //           disable: process.env.NODE_ENV !== 'production', 
   //           pngquant: {
-  //               quality: '95-100'
+  //               // quality: '95-100'
+  //               quality: '75-80'
   //           }
   //       })
   //   ]

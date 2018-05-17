@@ -97,8 +97,12 @@
             }
         },
         mounted: function(){
-            var self = this;
-            br_goEasy.subscribe({
+            this.goEasy()
+        },
+        methods: {
+            goEasy(){ // 注册goEasy
+                var self = this;
+                br_goEasy.subscribe({
                     channel: 'user_'+localStorage.brUid,
                     onMessage: function(message){
                         // console.log(message.content)
@@ -108,33 +112,41 @@
                         var type = msg.type;
                         switch(type){
                         case 'RoomInfo':    // 普通玩家
-                            self.$store.state.room['pt'] = data;
-                        break;
-                        case 'BankerInfo':  // 庄和上庄
+                            var room = self.$store.state.room;
+                            room['pt'] = data;
                             for(var i=0; i<data.length; i++){
+                                if(room.room_id.indexOf(data[i].id) < 0){
+                                    room.room_id.push(data[i].id)
+                                }
+                            }
+                            break;
+                        case 'BankerInfo':  // 庄和上庄
+                            var room = self.$store.state.room;
+                            for(var i=0; i<data.length; i++){
+                                if(room.room_id.indexOf(data[i].uid) < 0){
+                                    room.room_id.push(data[i].uid)
+                                }
                                 if(data[i].status==1){
                                     self.$store.state.room.z = data[i];
                                 } else {
-                                    self.$store.state.room.sz.splice(i,1,data[i]);
+                                    self.$store.state.room.sz.splice(i, 1, data[i]);
                                 }
                                 if(data[i].uid == localStorage.brUid){
                                     self.$store.state.user.type = 2;
                                 }
                             }
-                            // console.log(self.z)
-                        break;
-                    case 18 : // 支付结束
-                        self.$refs.onheader.iframeCss = 'iframeCss';
-                        self.errorTips = msg.msg;
-                        self.careTip = true;
-                        localStorage.brCardNum = msg.diamond_num;
-                        self.$store.state.user.userCard = msg.diamond_num;
-                        break;
+                            break;
+                        case 18 : // 支付结束
+                            self.$refs.onheader.iframeCss = 'iframeCss';
+                            self.errorTips = msg.msg;
+                            self.careTip = true;
+                            localStorage.brCardNum = msg.diamond_num;
+                            self.$store.state.user.userCard = msg.diamond_num;
+                            break;
                         }
                     }
-                }); // 注册goeasy 
-        },
-        methods: {
+                });
+            },
             fh(){
                 this.$store.dispatch('yinx10010');
                 if(this.$refs.onheader.iframeCss == 'iframeCss02'){
@@ -153,8 +165,8 @@
                 }).then( res => {
                     console.log(res)
                     if(res.code == 200){
-                        localStorage['dlGame'] = '1';
-                        self.$store.state.user.dlGame ='1';
+                        localStorage.dlGame = '1';
+                        self.$store.state.user.dlGame = 1;
                         self.join()
                         self.daili=false;
                     } else {
@@ -163,11 +175,14 @@
                 })
             },
             join(){     // 进入房间判断
+                // this.daili=true;
+                // console.log(this.$store.state.user.dlGame)
                 if(this.$store.state.user.dlGame == 1){
                     http.post('/Room/addRoom', {
                         room_id: 1,
                     },'',this).then( res => {
                         if(res.code == 200){
+                            this.goEasy();
                             router.push({path: 'room/999'})
                         } else {
                             alert('加入失败')

@@ -14,7 +14,7 @@
     <ul>
       <li :class='ZD ? "":"baiBJ"'>
         <input type="text" v-model='name' :readonly='ZD'/>
-        <img src="../../oxImg/hb.png" @click='ZD=!ZD' v-if='ZD'/>
+        <!-- <img src="../../oxImg/hb.png" @click='ZD=!ZD' v-if='ZD'/> -->
         <b class='queren' v-if='!ZD' @click='changeName'></b>
       </li>
       <li>ID:{{id}}</li>

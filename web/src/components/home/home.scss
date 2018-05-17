@@ -56,7 +56,6 @@
     top:0;
     // 头部 
     header {
-        
         height: 2.777778rem;
         background: rgba(0,0,0,0.21);
         z-index: 3;
@@ -65,9 +64,9 @@
             margin-bottom: .16rem;
         }
         .hei {
-            height: 0.8rem;
+            height: 0.4rem;
             width: 100%;
-            background: #222;
+            background: rgba(0,0,0,0.21);
         }
         
     }
@@ -151,8 +150,6 @@
         }
 
     }
-
-
 }
 #mes_swi{
     .mint-switch {

@@ -12,22 +12,22 @@ const room = {
     yazhu : function(idx,self,http,e){ // 押注
         e = e || event;
         // console.log(idx)
-        if (self.user.initType != 5) {  // 压分阶段
+        if (self.user.initType != 5 || self.$store.state.room.z.uid == localStorage.brUid) {  // 压分阶段
             return false;
         }
-        console.log(self.$store.state.user.userCard)
-        var fefefe = [ 1, 5, 10, 50, 100 ];
-        var fen = null;
-        switch(self.chouma.one){
-        case 1:  fen=1;   break;
-        case 2:  fen=5;   break;
-        case 3:  fen=10;  break;
-        case 4:  fen=50;  break;
-        case 5:  fen=100; break;
-        }
+        
+        var fefefe = [ 1, 10, 100, 500, 1000 ];
+        var fen = fefefe[self.chouma.one-1];
         if (Number(self.$store.state.user.userCard) < fen){
             return false;
         }
+        // 声音
+        self.$store.dispatch('click02'); // 筹码声音
+        var idxCard = self.move.bounce.length;
+        self.move.imgNum += 1;                          // 复制
+        self.$set(self.move.srcImgStyle, idxCard, `visibility:visible;left:${e.clientX - 10}px;top:${e.clientY - 10}px;z-index:510;transform:translate(-50%,-50%);`);
+        self.move.bounce[idxCard] = fen;                  // 压分分数
+
         http.post('/Card/cardLog', {
             room_id: self.user.rid,     // 房间id
             card_num: idx,               // 第几副牌
@@ -36,12 +36,6 @@ const room = {
             .then(res => {
                 if (res.code == 200) {
                     self.chouma.liCss[idx] = 1;
-                    var header_H = document.querySelector('#app').offsetHeight;
-                    var imgOnes = document.getElementsByClassName('clickFen02');
-                    var idxCard = self.move.bounce.length;
-                    self.move.imgNum += 1;                          // 复制
-                    self.$set(self.move.srcImgStyle, idxCard, `visibility:visible;left:${e.clientX-10}px;top:${e.clientY-10}px;z-index:510;transform:translate(-50%,-50%);`);
-                    self.move.bounce[idxCard] = fen;                  // 压分分数
                 }
             })
     },
@@ -85,7 +79,6 @@ const room = {
         }
         return this;
     },
-    
 }
 
 export default room;

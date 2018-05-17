@@ -198,8 +198,6 @@
     },
     mounted:function(){
         http.post('/Room/getDiamond',{}).then( res =>{
-            console.log(res)
-            
             if(res.code == 200){
                 this.buyArr = [];
                 for(var i=0; i<res.data.length; i++){

@@ -2,6 +2,20 @@
     <header>
         <iframe :src="iframe" frameborder="0" :id='iframeCss'></iframe>
         <audio src="src/Music/du001.mp3" autoplay v-if='$store.state.Music.autoplay' loop></audio>
+        <audio src="src/Music/a001.mp3" autoplay 
+        v-if='$store.state.Music.src' loop></audio>
+
+        <audio src="src/Music/click01.mp3" autoplay 
+        v-for='(data, idx) in $store.state.Music.click01_num' :key='"cli01"+data'
+        v-if='$store.state.Music.click01[idx]'></audio>
+
+        <audio src="src/Music/click02.mp3" autoplay 
+        v-for='(data, idx) in $store.state.Music.click02_num' :key='"cli02"+data'
+        v-if='$store.state.Music.click02[idx]'></audio>
+
+        <audio src="src/Music/qxzhu.mp3" autoplay 
+        v-if='$store.state.Music.qxzhu'></audio>
+
         <mt-popup 
             v-model="wenti"
             popup-transition="popup-fade"
@@ -28,7 +42,7 @@
                 </div>
                 <div class="c">
                     <div class="zs">
-                        <img src="../../oxImg/zs.png" alt="">
+                        <img src="../../oxImg/zs.png" alt=""  @click='test()'>
                         <span>{{$store.state.user.userCard}}</span>
                         <img src="../../oxImg/tj.png" @click='buyKa'>
                     </div>
@@ -37,9 +51,10 @@
                     <img src="../../oxImg/home09.png" @click='toWx'>
                     <img src="../../oxImg/wh.png" v-if='$parent.wen == 999' @click='wenti=true'>
                     <img src="../../oxImg/home08.png" v-if='$parent.wen != 999' 
-                    v-show='!$store.state.Music.autoplay'>
+                    v-show='!$store.state.Music.autoplay' @click='$store.state.Music.autoplay=!$store.state.Music.autoplay'>
                     <img src="../../oxImg/home07.png" v-if='$parent.wen != 999'
-                    v-show='$store.state.Music.autoplay'>
+                    v-show='$store.state.Music.autoplay'
+                    @click='$store.state.Music.autoplay=!$store.state.Music.autoplay'>
                 </div>
             </div>
         </div>
@@ -52,20 +67,8 @@
                     :prevent = 'true'
                     :speed="800" :auto="5000" 
                     class='autoOx'>
-                    <mt-swipe-item v-for='notices in $store.state.oxCrowd.notice'>
+                    <mt-swipe-item v-for='notices in title'>
                         <span>{{notices}}</span>
-                    </mt-swipe-item>
-                    <mt-swipe-item v-for='notices in $store.state.oxCrowd.notice'>
-                        <span>{{notices}}</span>
-                    </mt-swipe-item>
-                    <mt-swipe-item>
-                        <span>健康游戏，请勿赌博。</span>
-                    </mt-swipe-item>
-                    <mt-swipe-item>
-                        <span>富强、民主、文明、和谐、自由、平等。</span>
-                    </mt-swipe-item>
-                    <mt-swipe-item>
-                        <span>公正、法治、爱国、敬业、诚信、友善。</span>
                     </mt-swipe-item>
                 </mt-swipe>
             </p>
@@ -281,11 +284,24 @@
                 hash: location.hash.slice(-4),
                 hashsh: location.hash,
                 wenti: false,   // 问题弹框 
+                title: [],  // 公告内容
             }
         },
-        mounted: function(){},
+        mounted: function(){
+            this.test()
+        },
         methods: {
             test(){
+                http.post('/Room/getArticle', {}).then(res => {
+                    if(res.code == 200){
+                        var [ arrD, title ] = [ res.data, this.title=[] ];
+                        for(let o in arrD)
+                        {
+                            if(arrD[o].is_top == 1) title.unshift(arrD[o].title)
+                            else title.push(arrD[o].title)
+                        }
+                    }
+                })
             },
             fhHome(){
                 if(this.hash=='home'){
@@ -297,6 +313,7 @@
             },
             buyKa(){    // 购买钻石
                 this.$store.dispatch('yinx10010');
+                
 
                 this.$refs.onbuyRoomChild.buyRoom=true;
             },

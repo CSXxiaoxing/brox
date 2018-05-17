@@ -31,8 +31,8 @@ function share_WANJI(WANJI_TYPE){
             shareMessage(s,ex);
         } else {
             s.authorize( function(){
-                    shareMessage(s,ex);
-                },function(e){
+                shareMessage(s,ex);
+            },function(e){
                 outLine( "认证授权失败："+e.code+" - "+e.message );
             });
         }
@@ -45,17 +45,15 @@ function share_WANJI(WANJI_TYPE){
     function shareMessage(s,ex){
         var msg = {
             content: '分享-详情',
-            href: WANJI_ALL_URL+'/Public/Static/tmp/index.html',
-            title: '玩机吧',
-            content: '史上最刺激的游戏',
-            thumbs: ['http://wanji888.hamingniao.com/uploadfiles/images/121.jpeg'],
-            pictures: ['http://wanji888.hamingniao.com/uploadfiles/images/121.jpeg'],
+            href: 'http://cow.haminniao.com/api/index/share/',
+            title: '百人大战',
+            content: '史上最刺激的斗牛游戏',
+            thumbs: ['http://cow.haminniao.com/static/admin/images/aaa.png'],
+            pictures: ['http://cow.haminniao.com/static/admin/images/aaa.png'],
             extra: {
                 scene: "WXSceneSession"
             }
-
         };
-        
         s.send(msg, function() {
             outLine("分享成功!");
         }, function(e) {

@@ -18,7 +18,7 @@ document.getElementById("vp").content = mstr;
 var br_goEasy = null;
 br_goEasy = new GoEasy({
     appkey: 'BC-d074375f4cab438da73d82aa9dcf6c6e',
-    userId: '25',
+    userId: localStorage.brUid || '25',
     onConnected: function () {
         console.log("成功连接GoEasy。");
     },
